@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+import os
+os.chdir('D:\\R\\Boston')
+
+#Import the file
+train=pd.read_csv('train.csv')
+
+#Audit the file
+train['ID'].isna().value_counts()
+train['crim'].isna().value_counts()
+train['zn'].isna().value_counts()
+train.isna().sum()
+summary= train.describe()
+train.head() # gives 1st 5 rows
+train.tail() # gives last 5 rows
+train['tax'].mean() # using pandas to calculate mean
+np.mean(train['tax']) # using numpy to calculate mean
+
+# Tocheck for Skewness
+train.skew()
+
+train['chas'].value_counts()
+train['ID'].value_counts()
+
+train['log_crim'] = np.log(train['crim'])
+train['Scale_crim']=((train['crim']-train['crim'].mean())/(train['crim'].std()))
+correlation_matrix=np.corrcoef(train['crim'],train['tax'])
+cor_matrix_pandas=train.corr()
+
+
